@@ -31,7 +31,7 @@ Version = 'V4';         % 2020
 WorkDir  = [pwd '/'];   % MUST end with slash 
 
 % set to 0 if no parallelization wanted
-Num_parallel_workers =  10; % 32 ; % 0;           %  set up matlab parallel features
+Num_parallel_workers =  10;                 %  set up matlab parallel features
 
 addpath([WorkDir 'EK80/'])                  % utility programs folder, end with slash
 addpath([WorkDir 'EK80_software/'])         % routines special/modified
@@ -40,33 +40,16 @@ addpath([WorkDir 'extras/'])                % extra routines
 
 % Path to input .raw files for processing, MUST end with slash
 %    if using GUI, will use as repository, not input files
-if ~exist([WorkDir 'Data/'])
-    fprintf('\t  Making %s\n', [WorkDir 'Data/']);
-    mkdir([WorkDir 'Data/'])
-end
 DataFilePath = [WorkDir 'Data/'];  
+MatOutDir    = [DataFilePath 'matfiles/'];    % path to folder that will contain .mat files that hold processed data
+PlotOutDir   =  [DataFilePath 'proc_plots/']; % path to folder that will hold images and plots. End with a slash
 
-% ---------------------------------------------------------------- 
-
-% path to folder that will contain .mat files that hold processed data
-MatOutDir = [DataFilePath 'matfiles/'];  
-
-% path to folder that will hold images and plots. End with a slash
-PlotOutDir =  [DataFilePath 'proc_plots/'];
-
-
-% check if data dir exists
-if ~exist(DataFilePath,'dir')
-       error(['Cannot find ' DataFilePath]);
-end
- 
-% check if the others exist
-if ~exist(MatOutDir,'dir')
-       mkdir(MatOutDir);
+if ~ exist(MatOutDir,'dir')
+    mkdir(MatOutDir);
 end
 
-if ~exist(PlotOutDir,'dir')
-       mkdir(PlotOutDir);
+if ~ exist(PlotOutDir,'dir')
+    mkdir(PlotOutDir);
 end
 
 % ----------------------------------------------------------------------- 
