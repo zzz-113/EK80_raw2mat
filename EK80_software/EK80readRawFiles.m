@@ -28,19 +28,7 @@ elseif strcmp(version, 'V4')
         return
     end
     
-    data.version = version;
- 
-elseif strcmp(version, 'V4')
-    data = EK80readRawV4(full_rawfiles);
-    
-    % fixing partial files  2019
-    if isempty(data)
-        data_all = [];
-        return
-    end
-    
-    data.version = version;
-   
+    data.version = version;  
     
 else
     disp(['Unknown file version of ' version])

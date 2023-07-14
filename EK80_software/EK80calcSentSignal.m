@@ -1,4 +1,4 @@
-function ytx = EK80calcSentSignal_DT(data, channel, settingsPing)
+function ytx = EK80calcSentSignal(data, channel, settingsPing)
     %
     % Generates a simulated sent pulse waveform using the parameters from
     % the given channel and ping number.

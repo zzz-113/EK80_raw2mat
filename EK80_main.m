@@ -17,9 +17,9 @@
 %
 %    Set ups working space and input/output directories
 % ----------------------------------------------------------
-    fprintf('Initializing.... \n');
+fprintf('Initializing.... \n');
 
- EK80_init  
+EK80_init  
 
 
 %% ---------------------------------------------------------
@@ -43,7 +43,7 @@ fprintf('Start Parallelization\n');
 % ---------------------------------------------------------
 
      
-    if (exist('Pool') && Pool ~= 0)       % if Pool has workers do parallel
+    if exist('Pool','var') && Pool ~= 0       % if Pool has workers do parallel
         
         fprintf('Running Parallel\n');
         EK80_read_proc_data_par;       % do ALL files selected in parallel
@@ -74,11 +74,11 @@ end
 
 
 %% --------------------------------------------------------
-%   Optional: Plot all locations of signals
+%  Optional: Plot all locations of signals
 % 
 %  If GPS positions are available
 %
-%   Also saves kml files for google earth
+%  Also saves kml files for google earth
 % ---------------------------------------------------------
 
 if 0

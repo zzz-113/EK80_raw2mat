@@ -158,19 +158,44 @@ for i = 1:length(filterData)
     % debugging
     % fprintf('filterData(%d).ChannelID: %s\n',i,filterData(i).ChannelID);
     
-     % fixing partial files 2019
+     
+    % section added to run 'WBAT-Phase0-D20230626-T151312-0-pp' (Z. Zhuang)
+    % a special error in 'WBAT-Phase0-D20230626-T151312-0-pp'
+    % channels('EKA 283150-F0 ES120-7CD Split') --> The specified key is not present in this container.
+    % channels('EKA 283150-F0 ES120-7CD') --> ans = 2
+    % replace 'EKA 283150-F0 ES120-7CD Split' by 'EKA 283150-F0 ES120-7CD'
+    if strcmp(filterData(i).ChannelID,['EKA 283150-F0 ES120-7CD' char(0) 'Split'])
+        % be VERY careful about the ' ' before the 'Split',
+        %   in filterData.ChannelID ' ' = char(0);
+        %              what we type ' ' = char(32);
+        filterData(i).ChannelID = 'EKA 283150-F0 ES120-7CD';
+    end
+
+
+
+    % fixing partial files 2019
     if ~isKey(channels,filterData(i).ChannelID)
         data = [];
         fprintf('\t Missing Key for channels.. Partial file?\n');
         return
     end
-    
-   
-    
+
     channel = channels(filterData(i).ChannelID);
     f(channel, filterData(i).Stage) = filterData(i);
 end
 filterData = f;
+
+
+
+
+warning off
+for i = 1:1:size(filterData,1)
+    for j = 1:1:size(filterData,2)
+        filterDataStruct(i,j) = struct(filterData(i,j)); % filterData Obj cannot be saved properly, disappear when reopen MATALB.
+    end
+end
+
+
 
 if ~exist('nmeaData', 'var')
     nmeaData = struct([]);
@@ -181,7 +206,7 @@ end
 %     'nmea', nmeaData, 'param', paramData, 'channelMap', channels, ...
 %     'mru', mruData, 'channelIDs', (channelsInverse));
 
-data = struct('echodata', sampleData, 'filters', filterData, ...
+data = struct('echodata', sampleData, 'filters', filterData, 'filters_', filterDataStruct, ...
     'config', configData, 'environ', envData, ...
     'nmea', nmeaData, 'param', paramData, 'channelMap', channels, ...
     'channelIDs', (channelsInverse));

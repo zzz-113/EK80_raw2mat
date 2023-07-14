@@ -31,7 +31,7 @@ Version = 'V4';         % 2020
 WorkDir  = [pwd '/'];   % MUST end with slash 
 
 % set to 0 if no parallelization wanted
-Num_parallel_workers =  10;                 %  set up matlab parallel features
+Num_parallel_workers =  0;                 %  set up matlab parallel features
 
 addpath([WorkDir 'EK80/'])                  % utility programs folder, end with slash
 addpath([WorkDir 'EK80_software/'])         % routines special/modified
@@ -42,7 +42,7 @@ addpath([WorkDir 'extras/'])                % extra routines
 %    if using GUI, will use as repository, not input files
 DataFilePath = [WorkDir 'Data/'];  
 MatOutDir    = [DataFilePath 'matfiles/'];    % path to folder that will contain .mat files that hold processed data
-PlotOutDir   =  [DataFilePath 'proc_plots/']; % path to folder that will hold images and plots. End with a slash
+PlotOutDir   = [DataFilePath 'proc_plots/']; % path to folder that will hold images and plots. End with a slash
 
 if ~ exist(MatOutDir,'dir')
     mkdir(MatOutDir);
