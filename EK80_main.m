@@ -21,7 +21,6 @@ fprintf('Initializing.... \n');
 
 EK80_init  
 
-
 %% ---------------------------------------------------------
 %   Start Parallel
 %
