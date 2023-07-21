@@ -27,7 +27,8 @@ EK80_init
 %       parallation is optional, 
 %           will run in serial if Num_parallel_workers is 0
 %
-%   Num_parallel_workers set in init file        
+%   Num_parallel_workers set in init file     
+
 % ----------------------------------------------------------
 fprintf('Start Parallelization\n');
     
